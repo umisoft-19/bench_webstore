@@ -1,0 +1,33 @@
+
+
+.hero {
+    margin-top: 25vh;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 2rem;
+    margin: 4rem
+}
+
+.search input {
+    border: 0px;
+    outline: 0px;
+    height: 16px;
+    padding: 4px
+}
+
+.search {
+    border-radius: 12px;
+    border: 1px solid #eee;
+    width: fit-content;
+    margin: 0px auto;
+    padding: 4px;
+}
+
+.section {
+    min-height: 80vh
+}
+
+.departmentCards {
+    display: flex;
+    flex-wrap: wrap
+}

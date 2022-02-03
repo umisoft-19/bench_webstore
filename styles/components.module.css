@@ -1,0 +1,74 @@
+.card {
+    margin: 1rem;
+    border-radius: 10px;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, 
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card img {
+    width: 200px;
+    height: auto;
+}
+
+.cardImg {
+    height: 175px;
+    overflow: hidden;
+}
+
+.cardBody {
+    padding: 1rem;
+}
+
+.input input {
+    margin-top: 0.25rem;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 2px solid black;
+    display: block;
+    height: 1.25rem;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    width: 100%;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.input input:hover, 
+.input input:focus {
+    background-color: rgb(250, 250,250);
+} 
+
+.input {
+    margin-bottom: 0.75rem;
+}
+
+.input label {
+    font-weight: 700;
+    color: #777
+}
+
+.departmentList,
+.categoryList 
+{
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+}
+
+.categoryList li {
+    margin-top: 0.5rem
+}
+
+.departmentList > li > ul {
+    border-top: 1px solid black;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.categoryList {
+    padding: 0.5rem 1rem 
+}
