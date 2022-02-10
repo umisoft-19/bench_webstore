@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react'
-import axios from 'axios'
-import styles from '../styles/faq.module.css'
+import {useState, useEffect} from "react"
+import axios from "axios"
+import styles from "../styles/faq.module.css"
 
 const Question = (props) => {
     const [show, setShow] = useState(false)
@@ -30,12 +30,12 @@ export default  function FAQ(props) {
             <h1>Frequently Asked Questions</h1>
             <div>
                 {faqs.map(cat =>(
-                    <div className={styles.category}>
+                    <div key={cat.name} className={styles.category}>
                         <h3>{cat.name}</h3>
                         <p>{cat.description}</p>
                         <ul>
-                            {cat.faqitem_set.map(q => (
-                                <Question {...q}/>
+                            {cat.faqitem_set.map((q, i)=> (
+                                <Question {...q} key={i} />
                             ))}
                         </ul>
                     </div>

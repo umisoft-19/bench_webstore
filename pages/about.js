@@ -1,17 +1,17 @@
-import styles from '../styles/about.module.css'
-import {useState, useEffect} from 'react'
-import axios from 'axios'
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
-import ReactMarkdown from 'react-markdown'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styles from "../styles/about.module.css"
+import {useState, useEffect} from "react"
+import axios from "axios"
+import dynamic from "next/dynamic"
+import Head from "next/head"
+import ReactMarkdown from "react-markdown"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
 export default  function About(props) {
     const [data, setData] = useState(null)
     const [location, setLocation] = useState([-17.8216, 31.0492])
     const Map = dynamic(
-        () => import('../components/map'), 
+        () => import("../components/map"), 
         { ssr: false } 
     )
     useEffect(() => {
@@ -44,7 +44,7 @@ export default  function About(props) {
             <h1>About Us</h1>
             <div className={styles.container}>
                 <div>
-                    <h2 className='text-center'>{data.company.name}</h2>
+                    <h2 className="text-center">{data.company.name}</h2>
                     <hr />
                     {data.about_page_image ? <img src={data.about_page_image} /> :null}
                     <ReactMarkdown>{data.about_page_text}</ReactMarkdown>
@@ -52,7 +52,7 @@ export default  function About(props) {
                 <div>
                     <h3><FontAwesomeIcon icon="home"/> Address</h3>
                     <Map long={location[0]} lat={location[1]}/>
-                    <p style={{whiteSpace:'pre'}}>{data.company.address}</p>
+                    <p style={{whiteSpace:"pre"}}>{data.company.address}</p>
                     <h3>Contact</h3>
                     <h5><FontAwesomeIcon icon="at"/> Email</h5>
                     <span>{data.company.email}</span>

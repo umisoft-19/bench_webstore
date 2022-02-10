@@ -1,4 +1,4 @@
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup } from "react-leaflet"
 
 
 export default function LeafletMap(props) {
@@ -6,7 +6,7 @@ export default function LeafletMap(props) {
         <div>
             <Map center={[props.long, props.lat]} zoom={15} style={{width: "100%", height:"250px"}} >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution={`&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`}
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <Marker position={[props.long, props.lat]}>

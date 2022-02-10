@@ -1,12 +1,12 @@
 
-import {useState, useEffect, useReducer} from 'react'
-import { useRouter } from 'next/router'
-import axios from 'axios'
-import Card from '../../components/product'
-import styles from '../../styles/department.module.css'
-import Input from '../../components/input'
-import Link from 'next/link'
-import Filters from '../../components/filters'
+import {useState, useEffect, useReducer} from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
+import Card from "../../components/product"
+import styles from "../../styles/department.module.css"
+import Input from "../../components/input"
+import Link from "next/link"
+import Filters from "../../components/filters"
 
 
 

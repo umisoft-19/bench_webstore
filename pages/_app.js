@@ -1,15 +1,15 @@
-import '../styles/globals.css'
+import "../styles/globals.css"
 import "@fortawesome/fontawesome-svg-core/styles.css"
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { fab } from "@fortawesome/free-brands-svg-icons"
 import { faHome, faSearch, faFilter, faEllipsisV, faBars,
    faAngleLeft, faAngleRight, faShoppingCart, faHeart,
-   faAt, faPhone, faQuestion, faList, faFile, faStar } from '@fortawesome/free-solid-svg-icons'
-import Layout from '../components/layout'
-import { useState, useEffect } from 'react'
-import Context from '../utils/context'
-import  { getCookie } from 'cookies-next'
-import axios from 'axios'
+   faAt, faPhone, faQuestion, faList, faFile, faStar } from "@fortawesome/free-solid-svg-icons"
+import Layout from "../components/layout"
+import { useState, useEffect } from "react"
+import Context from "../utils/context"
+import  { getCookie } from "cookies-next"
+import axios from "axios"
 
 
 library.add(faHome, faSearch, faFilter, faBars, faEllipsisV, 

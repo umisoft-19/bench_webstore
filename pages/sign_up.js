@@ -1,8 +1,8 @@
-import Input from '../components/input'
-import formStyles from '../styles/forms.module.css'
-import Link from 'next/link'
-import {useReducer, useEffect} from 'react'
-import axios from 'axios'
+import Input from "../components/input"
+import formStyles from "../styles/forms.module.css"
+import Link from "next/link"
+import {useReducer, useEffect} from "react"
+import axios from "axios"
 
 const reducer = (state, action) => {
     const newState = {...state}

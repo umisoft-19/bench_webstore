@@ -1,8 +1,8 @@
-import styles from '../../styles/blog.module.css'
-import {useState, useEffect} from 'react'
-import Input from '../../components/input'
-import axios from 'axios'
-import { Tag, Author, ArticleCard } from '../../components/blog'
+import styles from "../../styles/blog.module.css"
+import {useState, useEffect} from "react"
+import Input from "../../components/input"
+import axios from "axios"
+import { Tag, Author, ArticleCard } from "../../components/blog"
 
 
 export default  function Blog(props) {
@@ -45,10 +45,11 @@ export default  function Blog(props) {
                     <h2>Articles</h2>
                     <div className={styles.articles}>
                         {articles.map(a => <ArticleCard 
-                                            image={a.title_photo}
-                                            title={a.title}
-                                            author={a.author.name}
-                                            id={a.id}
+                                                image={a.title_photo}
+                                                title={a.title}
+                                                author={a.author.name}
+                                                id={a.id}
+                                                key={a.id}
                                             />)}
                     </div>
                     <h2>Authors</h2>
@@ -57,6 +58,7 @@ export default  function Blog(props) {
                                                   src={author.photo}
                                                   name={author.name}
                                                   bio={author.bio}
+                                                  key={author.name}
                                                 />)}
                     </div>
                 </div>

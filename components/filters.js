@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios"
 import { useReducer } from "react"
-import Input from './input'
+import Input from "./input"
 
 const reducer = (state, action) => {
     console.log(action)

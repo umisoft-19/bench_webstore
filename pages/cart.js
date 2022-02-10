@@ -1,6 +1,6 @@
-import Context from '../utils/context'
-import styles from '../styles/cart.module.css'
-import Price from '../components/price'
+import Context from "../utils/context"
+import styles from "../styles/cart.module.css"
+import Price from "../components/price"
 
 export default  function Cart(props) {
     return (
@@ -10,8 +10,8 @@ export default  function Cart(props) {
                 {context.account
                     ? <div>
                         {context.account.cart.length > 0 
-                            ? context.account.cart[0].items.map(line => (
-                                <div className={styles.cartItem}>
+                            ? context.account.cart[0].items.map((line, i) => (
+                                <div className={styles.cartItem} key={i}>
                                     <div><img src={line.item.img} /></div>
                                     <div className={styles.flexOne}>
                                         <h4>{line.item.name}</h4>

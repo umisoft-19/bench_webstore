@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'react'
-import {useRouter} from 'next/router'
-import axios from 'axios'
-import ReactMarkdown from 'react-markdown'
-import styles from '../../styles/blog.module.css'
+import {useState, useEffect} from "react"
+import {useRouter} from "next/router"
+import axios from "axios"
+import ReactMarkdown from "react-markdown"
+import styles from "../../styles/blog.module.css"
 
 export default  function Blog(props) {
     const [article, setArticle] = useState(null)

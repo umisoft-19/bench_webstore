@@ -1,7 +1,7 @@
-import styles from '../styles/layout.module.css'
-import Link from 'next/link'
-import {useEffect, useState} from 'react'
-import Context from '../utils/context'
+import styles from "../styles/layout.module.css"
+import Link from "next/link"
+import {useEffect, useState} from "react"
+import Context from "../utils/context"
 
 const AccountMenu = props => {
     const [show, setShow] = useState(false)

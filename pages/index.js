@@ -1,12 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Index.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {useState, useEffect} from 'react'
-import DepartmentCard from '../components/department_card'
-import axios from 'axios'
-import Card from '../components/product'
-import Link from 'next/link'
+import Head from "next/head"
+import Image from "next/image"
+import styles from "../styles/Index.module.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {useState, useEffect} from "react"
+import DepartmentCard from "../components/department_card"
+import axios from "axios"
+import Card from "../components/product"
+import Link from "next/link"
 
 export default function Home() {
   const [departments, setDepartments] = useState([])
@@ -45,11 +45,11 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.hero}>
           <h1>Welcome To <br /> Your store</h1>
-          <p>Here's a slogan</p>
+          <p>Here"s a slogan</p>
           <div className={styles.search}>
             <input 
               type="text"
-              placeholder='Search...'
+              placeholder="Search..."
               onChange={evt => search(evt.target.value)}
             />
             <button>
@@ -57,8 +57,8 @@ export default function Home() {
             </button>
             {results.length > 0
               ? <div className={styles.results}>
-                  {results.map(res => (
-                    <div className={styles.result}>
+                  {results.map((res, i) => (
+                    <div className={styles.result} key={i}>
                         <div>
                           <img src={res.img} />
                         </div>

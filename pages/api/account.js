@@ -1,5 +1,5 @@
-import axios from '../../utils/auth'
-import  { getCookie } from 'cookies-next'
+import axios from "../../utils/auth"
+import  { getCookie } from "cookies-next"
 
 
 

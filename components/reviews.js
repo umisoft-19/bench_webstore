@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from '../styles/reviews.module.css'
-import Input from './input'
-import {useState} from 'react'
-import axios from 'axios'
+import styles from "../styles/reviews.module.css"
+import Input from "./input"
+import {useState} from "react"
+import axios from "axios"
 import Context from "../utils/context"
 const Bar = (props) => {
     return (
@@ -39,10 +39,10 @@ export default function Reviews(props) {
                     <h1>{props.stars.average.score__avg}</h1>
                 </div>
                 <div className={styles.filledStar}>
-                    <div>{Array(5).fill(0).map( _ => <FontAwesomeIcon icon="star" />)}</div>
-                    <div>{Array(4).fill(0).map( _ => <FontAwesomeIcon icon="star" />)}</div>
-                    <div>{Array(3).fill(0).map( _ => <FontAwesomeIcon icon="star" />)}</div>
-                    <div>{Array(2).fill(0).map( _ => <FontAwesomeIcon icon="star" />)}</div>
+                    <div>{Array(5).fill(0).map( (_, i) => <FontAwesomeIcon key={i} icon="star" />)}</div>
+                    <div>{Array(4).fill(0).map( (_, i) => <FontAwesomeIcon key={i} icon="star" />)}</div>
+                    <div>{Array(3).fill(0).map( (_, i) => <FontAwesomeIcon key={i} icon="star" />)}</div>
+                    <div>{Array(2).fill(0).map( (_, i) => <FontAwesomeIcon key={i} icon="star" />)}</div>
                     <div><FontAwesomeIcon icon="star" /></div>
                 </div>
                 <div className={styles.bars}>
@@ -61,6 +61,7 @@ export default function Reviews(props) {
                             <span 
                                 className={i+1 > score ? "" : styles.filledStar }
                                 onClick={() => setScore(i+1)}
+                                key={i}
                             >
                                 <FontAwesomeIcon icon="star" />
                             </span>
@@ -78,8 +79,8 @@ export default function Reviews(props) {
                 </div>
                 : null}
             <div>
-                {props.reviews.reverse().map(review =>(
-                    <div className={styles.review}>
+                {props.reviews.reverse().map((review, i) =>(
+                    <div className={styles.review} key={i}>
                         <h5 className={styles.filledStar}> {review.score} <FontAwesomeIcon icon="star" /> | {review.customer_name}</h5>
                         <p>{review.review}</p>
                     </div>

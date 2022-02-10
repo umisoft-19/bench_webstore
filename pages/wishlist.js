@@ -1,6 +1,6 @@
-import Context from '../utils/context'
-import styles from '../styles/wishlist.module.css'
-import ProductCard from '../components/product'
+import Context from "../utils/context"
+import styles from "../styles/wishlist.module.css"
+import ProductCard from "../components/product"
 
 
 
@@ -12,8 +12,12 @@ export default  function Wishlist(props) {
                 {context.account
                     ? <div className={styles.container}>
                         {context.account.cart.length > 0 
-                            ? context.account.wishlist.map(line => (
-                                <ProductCard {...line.item} noWishListButton/>
+                            ? context.account.wishlist.map((line, i) => (
+                                <ProductCard 
+                                    {...line.item} 
+                                    noWishListButton
+                                    key={i}
+                                />
                             ))
                             : <h3>No items in the wish list. Go shopping!</h3>}
                     </div>

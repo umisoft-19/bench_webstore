@@ -1,9 +1,9 @@
-import styles from '../styles/components.module.css'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { addToCart, addToWishList } from '../utils/shopping'
-import Context  from '../utils/context'
-import Price from './price'
+import styles from "../styles/components.module.css"
+import Link from "next/link"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { addToCart, addToWishList } from "../utils/shopping"
+import Context  from "../utils/context"
+import Price from "./price"
 
 export default function Card(props)  {
     

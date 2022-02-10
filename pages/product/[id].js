@@ -1,24 +1,24 @@
 
-import {useState, useEffect, useReducer, useRef} from 'react'
-import { useRouter } from 'next/router'
-import axios from 'axios'
-import Card from '../../components/product'
-import Carousel from '../../components/carousel'
-import styles from '../../styles/product.module.css'
-import Input from '../../components/input'
-import DepartmentList from '../../components/departmentList'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Reviews from '../../components/reviews'
-import { addToCart, addToWishList } from '../../utils/shopping'
-import Context from '../../utils/context'
-import Price from '../../components/price'
+import {useState, useEffect, useReducer, useRef} from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
+import Card from "../../components/product"
+import Carousel from "../../components/carousel"
+import styles from "../../styles/product.module.css"
+import Input from "../../components/input"
+import DepartmentList from "../../components/departmentList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Reviews from "../../components/reviews"
+import { addToCart, addToWishList } from "../../utils/shopping"
+import Context from "../../utils/context"
+import Price from "../../components/price"
 
 
 const reducer = (state, action) => {
     if(action.type == "increment") {
         return ({...state, count: state.count + 1} )
     }
-    if(action.type == 'decrement') {
+    if(action.type == "decrement") {
         return ({...state, count: state.count > 0 ? state.count - 1: 0})
     }
     return state
@@ -49,7 +49,7 @@ export default  function Product(props) {
                 setName(res.data.name)
                 setDescription(res.data.description)
                 setImages(img_list.concat(res.data.alternate_images))
-                dispatch({type:'set-index', value:res.data.alternate_images.length + 1})
+                dispatch({type:"set-index", value:res.data.alternate_images.length + 1})
             })
     }, [query]);
 

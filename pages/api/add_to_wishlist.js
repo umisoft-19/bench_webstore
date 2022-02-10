@@ -1,5 +1,5 @@
-import axios from '../../utils/auth'
-import  { getCookie } from 'cookies-next'
+import axios from "../../utils/auth"
+import  { getCookie } from "cookies-next"
 
 export default async function add_to_wishlist(req, res) {
     let data

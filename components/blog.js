@@ -1,5 +1,5 @@
-import styles from '../styles/blog.module.css'
-import cardStyles from '../styles/components.module.css'
+import styles from "../styles/blog.module.css"
+import cardStyles from "../styles/components.module.css"
 import Link from "next/link"
 
 const Tag = (props) => {

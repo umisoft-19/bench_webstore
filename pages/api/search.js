@@ -1,4 +1,4 @@
-import axios from '../../utils/auth'
+import axios from "../../utils/auth"
 
 export default async function search(req, res) {
     console.log(req.query)

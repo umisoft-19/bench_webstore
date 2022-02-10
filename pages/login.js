@@ -1,9 +1,9 @@
-import Input from '../components/input'
-import formStyles from '../styles/forms.module.css'
-import Link from 'next/link'
-import {useReducer, useEffect} from 'react'
-import {useRouter} from 'next/router'
-import axios from 'axios'
+import Input from "../components/input"
+import formStyles from "../styles/forms.module.css"
+import Link from "next/link"
+import {useReducer, useEffect} from "react"
+import {useRouter} from "next/router"
+import axios from "axios"
 
 const reducer = (state, action) => {
     const newState = {...state}
@@ -25,7 +25,7 @@ export default  function Login(props) {
             method: "GET",
             params: state
         }).then(res => {
-            router.push('/account/')
+            router.push("/account/")
         }).catch(err => {
             alert("Failed to authenticate user.")
         })
@@ -49,7 +49,7 @@ export default  function Login(props) {
                     value={state.password}
                     handler={(val) => dispatch({field: "password", value: val})}
                 />
-                <p>Don't have an account? <Link href="/sign_up"><b>Sign Up</b></Link></p>
+                <p>Don"t have an account? <Link href="/sign_up"><b>Sign Up</b></Link></p>
                 <button
                     className={formStyles.button}
                     onClick={submit}

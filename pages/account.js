@@ -1,9 +1,9 @@
-import Input from '../components/input'
-import styles from '../styles/account.module.css'
-import {useEffect, useState, useReducer} from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import Context from '../utils/context'
+import Input from "../components/input"
+import styles from "../styles/account.module.css"
+import {useEffect, useState, useReducer} from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
+import Context from "../utils/context"
 
 const reducer = (state, action) => {
     if(action.type === "input") {
@@ -34,7 +34,7 @@ const  Account = (props) => {
                     if(res.data.length > 0) {
                         const data = res.data[0]
                         const [first_name, last_name] = data.customer_name.split(" ")
-                        dispatch({type: 'initial', value: {
+                        dispatch({type: "initial", value: {
                             address: data.physical_address,
                             phone: data.phone_1,
                             email: data.email,
