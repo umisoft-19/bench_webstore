@@ -21,7 +21,6 @@ const reducer = (state, action) => {
 }
 
 
-
 export default function Carousel(props) {
     const [state, dispatch] = useReducer(reducer, {
         currentImgIndex: 0,

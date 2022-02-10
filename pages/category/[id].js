@@ -5,6 +5,7 @@ import axios from 'axios'
 import Card from '../../components/product'
 import styles from '../../styles/department.module.css'
 import Input from '../../components/input'
+import Filters from '../../components/filters'
 
 
 
@@ -14,7 +15,6 @@ export default  function Category(props) {
     const [img, setImg ] = useState(null)
     const [description, setDescription ] = useState("")
     const [name, setName ] = useState("")
-    const [nameInput, setNameInput ] = useState("")
     const router = useRouter()
     const query = router.query
     useEffect(() => {
@@ -41,26 +41,7 @@ export default  function Category(props) {
                     <hr />
                     <p>{description}</p>
                     <hr />
-                    <h3>Filters </h3>
-                    <Input 
-                        type="text"
-                        name="name"
-                        label="Name"
-                        handler={setNameInput}
-                    />
-                    <Input 
-                        type="number"
-                        name="name"
-                        label="Min. Price"
-                        handler={setNameInput}
-                    />
-                    <Input 
-                        type="number"
-                        name="name"
-                        label="Max. Price"
-                        handler={setNameInput}
-                    />
-                    <button className="teal-button btn">Filter</button>
+                    <Filters setProducts={setProducts}/>
                 </div>
                 <div className={styles.products}>
                     

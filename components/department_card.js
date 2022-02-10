@@ -4,13 +4,13 @@ import Link from 'next/link'
 export default function Card(props)  {
     console.log(props)
     return (
-        <div className={styles.card}>
+        <div className={styles.card} style={{height: 'fit-content'}}>
             {props.image 
                 ? <img src={props.image}/> 
                 : null}
-            <div className={styles.cardBody}>
+            <div className={styles.cardBody} >
                 
-                <h5><Link href={"/department/" + props.id}>{props.name}</Link></h5>
+                <h4><Link href={"/department/" + props.id}>{props.name}</Link></h4>
                 <ul>
                     {props.categories.map(cat => (
                         <li><Link href={`/category/${cat.id}/`}>{cat.name}</Link></li>

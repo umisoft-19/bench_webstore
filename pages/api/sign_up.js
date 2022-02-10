@@ -1,0 +1,15 @@
+import axios from '../../utils/auth'
+
+export default async function departments(req, res) {
+    
+    const data = await axios({
+        method: "POST",
+        url: `http://localhost:5000/web-api/bench/sign-up/`,
+        data: req.query,
+        headers: {
+            "X-CSRFTOKEN": resp.data.csrf
+        }
+    })
+     
+    return res.status(200).json( data.data)
+}

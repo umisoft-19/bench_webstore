@@ -28,7 +28,11 @@ a {
 }
 
 hr {
-  border: .5px solid #ddd;
+  border: .5px solid #eee;
   margin-left: 10%;
   margin-right: 10%
+}
+
+.text-center {
+  text-align: center;
 }

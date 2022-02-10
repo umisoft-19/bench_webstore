@@ -1,4 +1,6 @@
 import styles from '../styles/layout.module.css'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Footer(props) {
     return (
@@ -7,27 +9,27 @@ export default function Footer(props) {
                 <h5>About</h5>
                 <hr />
                 <ul>
-                    <li>About</li>
-                    <li>FAQ</li>
-                    <li>Terms of Service</li>
+                    <li><FontAwesomeIcon icon={'question'}/> <Link href="/about/">About</Link></li>
+                    <li><FontAwesomeIcon icon={'list'}/> <Link href="/faq/">FAQ</Link></li>
+                    <li><FontAwesomeIcon icon={'file'}/> Terms of Service</li>
                 </ul>
             </div>
             <div>
                 <h5>Contact</h5>
                 <hr />
                 <ul>
-                    <li>Email</li>
-                    <li>Telephone</li>
-                    <li>Address</li>
+                    <li><FontAwesomeIcon icon={'at'}/> Email</li>
+                    <li><FontAwesomeIcon icon={'phone'}/> Telephone</li>
+                    <li><FontAwesomeIcon icon={'home'}/> Address</li>
                 </ul>
             </div>
             <div>
                 <h5>Social</h5>
                 <hr />
                 <ul>
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                    <li>Whatsapp</li>
+                    <li><FontAwesomeIcon icon={['fab', 'instagram']}/> Instagram</li>
+                    <li><FontAwesomeIcon icon={['fab', 'facebook']}/> Facebook</li>
+                    <li><FontAwesomeIcon icon={['fab', 'whatsapp']}/> Whatsapp</li>
                 </ul>
             </div>
         </footer>

@@ -1,0 +1,30 @@
+.category {
+    background-color: rgb(250,250, 250);
+    margin: 2rem;
+    padding: 1rem
+}
+
+.question,
+.answerVisible
+{
+    list-style-type: none;
+    overflow-y: hidden;
+    border-radius: 0.25rem;
+    max-width: 500px;
+    background-color: white;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow:  rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.question {
+    height: 2rem;
+}
+.answerVisible {
+    height: fit-content;
+}
+
+.question h4 {
+    margin-top: 0.5rem;
+}

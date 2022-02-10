@@ -1,11 +1,12 @@
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useReducer} from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Card from '../../components/product'
 import styles from '../../styles/department.module.css'
 import Input from '../../components/input'
 import Link from 'next/link'
+import Filters from '../../components/filters'
 
 
 
@@ -15,9 +16,10 @@ export default  function Department(props) {
     const [img, setImg ] = useState(null)
     const [description, setDescription ] = useState("")
     const [name, setName ] = useState("")
-    const [nameInput, setNameInput ] = useState("")
+    
     const router = useRouter()
     const query = router.query
+
     useEffect(() => {
         if(!query.id) {
             return
@@ -32,6 +34,7 @@ export default  function Department(props) {
                 setImg(res.data.image)
             })
     }, [query]);
+    
     
 
     return (
@@ -48,27 +51,8 @@ export default  function Department(props) {
                         {categories.map(cat => (<li key={cat.id}><Link href={`/category/${cat.id}/`}>{cat.name}</Link></li>))}
                     </ul>
                     <hr />
-                    <h4>Filters </h4>
-                    <Input 
-                        type="text"
-                        name="name"
-                        label="Name"
-                        handler={setNameInput}
-                    />
-                    <Input 
-                        type="number"
-                        name="name"
-                        label="Min. Price"
-                        handler={setNameInput}
-                    />
-                    <Input 
-                        type="number"
-                        name="name"
-                        label="Max. Price"
-                        handler={setNameInput}
-                    />
+                    <Filters setProducts={setProducts} />
                     
-                    <button className="teal-button btn">Filter</button>
                 </div>
                 <div className={styles.products}>
                     

@@ -8,6 +8,10 @@ import styles from '../../styles/product.module.css'
 import Input from '../../components/input'
 import DepartmentList from '../../components/departmentList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Reviews from '../../components/reviews'
+import { addToCart, addToWishList } from '../../utils/shopping'
+import Context from '../../utils/context'
+import Price from '../../components/price'
 
 
 const reducer = (state, action) => {
@@ -26,6 +30,7 @@ export default  function Product(props) {
         count: 1
     })
     const [name, setName] = useState("")
+    const [obj, setObj] = useState(null)
     const [description, setDescription] = useState("")
     const [images, setImages] = useState([])
     const router = useRouter()
@@ -39,6 +44,8 @@ export default  function Product(props) {
         axios.get("/api/product/?id=" + query.id)
             .then(res => {
                 const img_list = [res.data.img]
+                console.log(res.data)
+                setObj(res.data)
                 setName(res.data.name)
                 setDescription(res.data.description)
                 setImages(img_list.concat(res.data.alternate_images))
@@ -47,7 +54,8 @@ export default  function Product(props) {
     }, [query]);
 
     return (
-        <div>
+        <Context.Consumer>{context=>(
+            <div>
             <h1>{name}</h1>
             <div className={styles.container}>
                 <div className={styles.sidebar}>
@@ -62,19 +70,31 @@ export default  function Product(props) {
                                 />
                         </div>
                         <div className={styles.productDescription}>
-                            <h5>Description</h5>
-                            <br />
+                            <h2><Price price={obj ? obj.unit_sales_price : 0}/></h2>
+                            <h4>Description</h4>
                             <p>{description}</p>
                             <br />
-                            <div className={styles.counter}>
-                                <button onClick={() => dispatch({type:"decrement"})}>-</button>
-                                <span>{state.count}</span>
-                                <button onClick={() => dispatch({type:"increment"})}>+</button>
-                            </div>
-                            <div className={styles.actions}>
-                                <button><FontAwesomeIcon icon="shopping-cart"/> Add to cart</button>
-                                <button><FontAwesomeIcon icon="heart"  /> Add to wishlist</button>
-                            </div>
+                            {context.account 
+                                ? <>
+                                    <div className={styles.counter}>
+                                        <button onClick={() => dispatch({type:"decrement"})}>-</button>
+                                        <span>{state.count}</span>
+                                        <button onClick={() => dispatch({type:"increment"})}>+</button>
+                                    </div>
+                                    <div className={styles.actions}>
+                                        <button 
+                                          onClick={() => addToCart(obj.id, context.account.id, state.count)}
+                                        >
+                                            ADD TO CART
+                                        </button>
+                                        <button 
+                                            onClick={() => addToWishList(obj.id, context.account.id)}
+                                        > 
+                                            WISH LIST ITEM 
+                                        </button>
+                                    </div>
+                                  </>
+                                : <p>Sign in for more options.</p>}
                         </div>
                     </div>
                     <div className={styles.share}>
@@ -86,12 +106,19 @@ export default  function Product(props) {
                             <div><FontAwesomeIcon icon={["fab", "twitter"]} size="2x" /> Twitter</div>
                         </div>
                         <div className={styles.comments}>
-                            <label htmlFor="">Comments</label><br />
-                            <textarea name="" id="" cols="30" rows="5"></textarea>
+                            {obj 
+                                ? <Reviews 
+                                    stars={obj.stars}
+                                    reviews={obj.productreview_set}
+                                    product_id={obj.id}
+                                  />
+                                : null}
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        )}</Context.Consumer>
     )
 }
