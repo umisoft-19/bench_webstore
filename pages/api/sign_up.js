@@ -4,7 +4,7 @@ export default async function departments(req, res) {
     
     const data = await axios({
         method: "POST",
-        url: `http://localhost:5000/web-api/bench/sign-up/`,
+        url: `${process.env.HOST}sign-up/`,
         data: req.query,
         headers: {
             "X-CSRFTOKEN": resp.data.csrf

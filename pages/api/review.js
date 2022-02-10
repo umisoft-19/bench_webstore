@@ -9,7 +9,7 @@ export default async function review(req, res) {
         headers: {
             "Authorization": token
         },
-        url:`http://localhost:5000/web-api/bench/review-product/`,
+        url:`${process.env.HOST}review-product/`,
         params: req.query
     })
     

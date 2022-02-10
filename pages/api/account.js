@@ -13,7 +13,7 @@ export default async function login(req, res) {
             headers: {
                 "Authorization": token
             },
-            url:`http://localhost:5000/web-api/bench/account/`,
+            url:`${process.env.HOST}account/`,
         })
     } catch(err) {
         console.log(err)

@@ -10,7 +10,7 @@ export default async function add_to_cart(req, res) {
             headers: {
                 "Authorization": token
             },
-            url:`http://localhost:5000/web-api/bench/add-to-cart/`,
+            url:`${process.env.HOST}add-to-cart/`,
             params: req.query
         })
     } catch(err) {

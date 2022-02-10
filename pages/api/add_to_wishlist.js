@@ -11,7 +11,7 @@ export default async function add_to_wishlist(req, res) {
             headers: {
                 "Authorization": token
             },
-            url:`http://localhost:5000/web-api/bench/add-to-wishlist/`,
+            url:`${process.env.HOST}add-to-wishlist/`,
             params: req.query
         })
     } catch(err) {
