@@ -4,7 +4,7 @@ import Link from "next/link"
 import styles from "../styles/components.module.css"
 
 
-export default function departmentList (props) {
+export default function DepartmentList (props) {
     const [departments, setDepartments] = useState([])
         useEffect(() => {
             axios.get("/api/department/?summary=True")
