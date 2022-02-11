@@ -14,7 +14,8 @@
     outline: 0px;
     height: 16px;
     font-size: 1rem;
-    font-weight: 700
+    font-weight: 700;
+    width: 100%;
 }
 
 .search button {
@@ -29,10 +30,11 @@
 .search {
     border-radius: 1rem;
     border: 1px solid #eee;
-    width: fit-content;
+    width: 100%;
     margin: 0px auto;
     padding: 0.5rem;
     position: relative;
+    display: flex;
 }
 
 .section {
@@ -42,7 +44,8 @@
 .departmentCards,
 .productList {
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    justify-self: center;
 }
 
 .results {

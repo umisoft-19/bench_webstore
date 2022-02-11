@@ -27,6 +27,13 @@ export default  function Blog(props) {
         <div>
             <div className={styles.header}>
                 <h1>Welcome to the Blog!</h1>
+                <div className={styles.inlineSearch}>
+                    <Input 
+                        label="Search"
+                        name="search"
+                        handler={setSearch}
+                        />
+                </div>
             </div>
             <div className={styles.container}>
                 <div className={styles.sidebar}>

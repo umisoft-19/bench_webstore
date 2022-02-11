@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .container {
@@ -97,4 +98,18 @@
 .articles {
     display: flex;
     flex-wrap: wrap;
+}
+
+.inlineSearch {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .sidebar {
+        display: none;
+    }
+
+    .inlineSearch {
+        display: block;
+    }
 }

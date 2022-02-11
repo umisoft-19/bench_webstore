@@ -15,7 +15,6 @@ export default  function Blog(props) {
 
         axios.get("/api/blog/?id=" + query.id)
             .then(res => {
-                console.log(res)
                 setArticle(res.data)
             })
     }, [query])

@@ -2,6 +2,7 @@ import styles from "../styles/layout.module.css"
 import Link from "next/link"
 import {useEffect, useState} from "react"
 import Context from "../utils/context"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const AccountMenu = props => {
     const [show, setShow] = useState(false)
@@ -40,19 +41,29 @@ const AccountMenu = props => {
 
 
 export default function Navbar(props) {
+    const [show, setShow] = useState(true)
+    // console.log(window)
     return (
         <nav className={styles.nav}>
             <div>
                 <Link href="/"><img src={props.config ? props.config.company.logo : "img"}/></Link>
             </div>
-            <ul className={styles.navList}>
-                <li><Link href="/">Products</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
-                <li><Link href="/about">About</Link></li>
-                <li><Link href="/login">Login</Link></li>
-                <li><Link href="/sign_up">Sign Up</Link></li>
-                <AccountMenu />
-            </ul>
+            <div>
+                <button 
+                    className={styles.mobileButton}
+                    onClick={() => setShow(!show)}
+                >
+                    <FontAwesomeIcon icon="bars"/>
+                </button>
+                <ul className={styles.navList} style={{display: show ? "flex": "none"}}>
+                    <li><Link href="/">Products</Link></li>
+                    <li><Link href="/blog">Blog</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/login">Login</Link></li>
+                    <li><Link href="/sign_up">Sign Up</Link></li>
+                    <AccountMenu />
+                </ul>
+            </div>
         </nav>
     )
 }

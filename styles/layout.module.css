@@ -10,12 +10,11 @@
     top: 0px
 }
 
-.nav > div {
+.nav > div > div {
     overflow: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .nav > div > img {
@@ -76,6 +75,45 @@
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, 
                     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+
+.mobileButton {
+    display: none;
+    border: 0px;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 575px) {
+    .mobileButton {
+        display: block;
+    }
+    .nav {
+        min-height: 50px;
+        width: 100vw;
+        left: 0px;
+        right: 0px;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        z-index: 10000;
+    }
+    .navList {
+        position: absolute;
+        top: 65px;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        z-index: 100000;
+        padding: 1rem;
+        right: 5px;
+    }
+
+    .navList li {
+        margin: 0.25rem;
+        font-size: 1.25rem;
+    }
+}
+
 
 @media (min-width: 576px) {
     .main {
