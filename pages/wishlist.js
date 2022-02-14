@@ -19,7 +19,7 @@ export default  function Wishlist(props) {
                                     key={i}
                                 />
                             ))
-                            : <h3>No items in the wish list. Go shopping!</h3>}
+                            : <h3>No items in the wishlist. Go shopping!</h3>}
                     </div>
                     : <h2>Sign In to view the wish list</h2> }
             </div>
