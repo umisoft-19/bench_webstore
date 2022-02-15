@@ -9,8 +9,8 @@ const Question = (props) => {
             className={show ? styles.answerVisible : styles.question}
             onClick={() => setShow(!show)}
         >
-            <h4>{props.question}</h4>
-            <div>{props.answer}</div>
+            <h4> <span className={styles.q}>Q</span> {props.question}</h4>
+            <div> <span className={styles.a} >A</span> {props.answer}</div>
         </li>
     )
 }

@@ -20,7 +20,6 @@ export default  function SignUp(props) {
     })
 
     const submit = () => {
-        console.log("submit")
         axios({
             url: "/api/sign_up",
             method: "GET",
@@ -46,6 +45,13 @@ export default  function SignUp(props) {
                     handler={(val) => dispatch({field: "last_name", value: val})}
                 />
                 <Input 
+                    label="User Name"
+                    name="username"
+                    type="text"
+                    value={state.username}
+                    handler={(val) => dispatch({field: "username", value: val})}
+                />
+                <Input 
                     label="Your Email Address"
                     name="email"
                     type="text"
@@ -55,16 +61,16 @@ export default  function SignUp(props) {
                 <Input 
                     label="Password"
                     name="password"
-                    type="text"
+                    type="password"
                     value={state.password}
                     handler={(val) => dispatch({field: "password", value: val})}
                 />
                 <Input 
                     label="Repeat Password"
-                    name="repeat_password"
-                    type="text"
-                    value={state.repeat_password}
-                    handler={(val) => dispatch({field: "repeat_password", value: val})}
+                    name="confirm_password"
+                    type="password"
+                    value={state.confirm_password}
+                    handler={(val) => dispatch({field: "confirm_password", value: val})}
                 />
                 <p>Already have an account? <Link href="/login"><b>Login</b></Link></p>
                 <button 

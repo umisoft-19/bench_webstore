@@ -7,14 +7,14 @@ import Context from "../utils/context"
 
 const reducer = (state, action) => {
     if(action.type === "input") {
-        state[action.name] = action.value
+        const newState = {...state}
+        newState[action.name] = action.value
+        return newState
     }
     if(action.type === "initial") {
         const newState = {...state, ...action.value}
         return newState
     }
-    console.log(state)
-    return state
 
 }
 
@@ -27,19 +27,20 @@ const  Account = (props) => {
     useEffect(()=> {
         axios.get("/api/account")
             .then(res => {
-                console.log(res)
                 if (res.data.error) {
                     router.push("/login")
                 } else {
                     if(res.data.length > 0) {
                         const data = res.data[0]
+                        console.log(data)
                         const [first_name, last_name] = data.customer_name.split(" ")
                         dispatch({type: "initial", value: {
-                            address: data.physical_address,
+                            address: data.billing_address,
                             phone: data.phone_1,
                             email: data.email,
                             first_name: first_name,
-                            last_name: last_name
+                            last_name: last_name,
+                            account: data.id
                         }})
                         setAccount(data)
                         props.setAccountDetails(data)
@@ -48,12 +49,24 @@ const  Account = (props) => {
 
             })
     }, [])
+
+    const submit = () => {
+        axios({
+            url: "/api/update_account",
+            method: "GET",
+            params: state
+        })
+    }
+
     return (
         <div>
             <h1>My Account</h1>
             <div className={styles.container}>
                 <div className={styles.right}>
-                    <button className="btn teal-button">
+                    <button 
+                        className="btn teal-button"
+                        onClick={submit}
+                    >
                         Update Details
                     </button>
                 </div>
