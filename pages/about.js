@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 import Head from "next/head"
 import ReactMarkdown from "react-markdown"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Spinner from "../components/spinner"
 
 
 export default  function About(props) {
@@ -29,7 +30,7 @@ export default  function About(props) {
     }, [])
 
     if(!data) {
-        return <p>Loading...</p>
+        return <Spinner />
     }
     return (
         <div>

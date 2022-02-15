@@ -6,7 +6,7 @@ import Card from "../../components/product"
 import styles from "../../styles/department.module.css"
 import Input from "../../components/input"
 import Filters from "../../components/filters"
-
+import Spinner from "../../components/spinner"
 
 
 
@@ -30,6 +30,10 @@ export default  function Category(props) {
                 setImg(res.data.image)
             })
     }, [query]);
+
+    if(products.length == 0) {
+        return <Spinner />
+      }
     
 
     return (

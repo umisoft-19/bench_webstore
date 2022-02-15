@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 import Input from "../../components/input"
 import axios from "axios"
 import { Tag, Author, ArticleCard } from "../../components/blog"
-
+import Spinner from "../../components/spinner"
 
 export default  function Blog(props) {
     const [articles, setArticles] = useState([])
@@ -22,6 +22,10 @@ export default  function Blog(props) {
                 }
             })
     }, [])
+
+    if(articles.length == 0) {
+        return <Spinner />
+      }
 
     return (
         <div>

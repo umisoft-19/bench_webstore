@@ -4,10 +4,10 @@
     padding: 1rem
 }
 
-.question,
-.answerVisible
+.question
 {
     list-style-type: none;
+    height: fit-content;
     overflow-y: hidden;
     border-radius: 0.25rem;
     max-width: 500px;
@@ -18,11 +18,17 @@
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.question {
-    height: 2rem;
+.question h4 {
+    line-height: 2rem;
 }
+
 .answerVisible {
     height: fit-content;
+}
+
+.answerHidden {
+    height: 0px;
+    overflow: hidden;
 }
 
 .question h4 {
@@ -34,6 +40,7 @@
     color: white;
     background-color: teal;
     border-radius: 50%;
+    margin-right: .5rem;
 }
 
 .a {
@@ -44,4 +51,5 @@
     border-radius: 50%;
     margin-bottom: .25rem;
     display: inline-block;
+    margin-right: .5rem;
 }

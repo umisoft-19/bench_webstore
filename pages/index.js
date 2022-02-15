@@ -7,6 +7,8 @@ import DepartmentCard from "../components/department_card"
 import axios from "axios"
 import Card from "../components/product"
 import Link from "next/link"
+import Spinner from "../components/spinner"
+
 
 export default function Home() {
   const [departments, setDepartments] = useState([])
@@ -33,6 +35,11 @@ export default function Home() {
         console.log(res)
         setResults(res.data)    
     })
+  }
+
+
+  if(departments.length == 0) {
+    return <Spinner />
   }
 
   return (

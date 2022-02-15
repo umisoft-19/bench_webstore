@@ -1,13 +1,12 @@
 .nav {
     background-color: white;
-    margin: -8px;
-    margin-top: -16px;
     display: flex;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    position: sticky;
+    position: fixed;
     left: 0px;
-    top: 0px
+    top: 0px;
+    width: 100vw;
 }
 
 .nav > div > div {
@@ -61,7 +60,8 @@
     display: block;
 }
 
-.navDropdownList select {
+.navDropdownList select,
+.select {
     width: 100%;
 }
 .main {
@@ -90,11 +90,7 @@
     }
     .nav {
         min-height: 50px;
-        width: 100vw;
-        left: 0px;
-        right: 0px;
-        margin-left: 0px !important;
-        margin-right: 0px !important;
+        width: 105vw;
         z-index: 10000;
     }
     .navList {

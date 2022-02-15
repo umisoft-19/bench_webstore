@@ -1,16 +1,22 @@
 import {useState, useEffect} from "react"
 import axios from "axios"
 import styles from "../styles/faq.module.css"
+import Spinner from "../components/spinner"
 
 const Question = (props) => {
     const [show, setShow] = useState(false)
     return (
         <li 
-            className={show ? styles.answerVisible : styles.question}
+            className={styles.question}
             onClick={() => setShow(!show)}
         >
             <h4> <span className={styles.q}>Q</span> {props.question}</h4>
-            <div> <span className={styles.a} >A</span> {props.answer}</div>
+            <div 
+                className={show ? styles.answerVisible : styles.answerHidden}
+            > 
+                <span className={styles.a} >A</span> 
+                {props.answer}
+            </div>
         </li>
     )
 }
@@ -25,6 +31,11 @@ export default  function FAQ(props) {
                 setFaqs(res.data)
             })
     }, [])
+
+    if(faqs.length == 0) {
+        return <Spinner />
+    }
+
     return (
         <div>
             <h1>Frequently Asked Questions</h1>

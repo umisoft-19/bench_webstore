@@ -12,7 +12,7 @@ import Reviews from "../../components/reviews"
 import { addToCart, addToWishList } from "../../utils/shopping"
 import Context from "../../utils/context"
 import Price from "../../components/price"
-
+import Spinner from "../../components/spinner"
 
 const reducer = (state, action) => {
     if(action.type == "increment") {
@@ -52,6 +52,10 @@ export default  function Product(props) {
                 dispatch({type:"set-index", value:res.data.alternate_images.length + 1})
             })
     }, [query]);
+
+    if(name.length == 0) {
+        return <Spinner />
+      }
 
     return (
         <Context.Consumer>{context=>(

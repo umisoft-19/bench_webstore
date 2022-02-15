@@ -1,5 +1,6 @@
 .row {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -14,4 +15,11 @@
     display: flex;
     justify-content: flex-end;
     padding: 0px 2rem
+}
+
+@media (max-width:575px) {
+    .card {
+        margin: 0.5rem;
+        min-width: 250px;
+    }
 }

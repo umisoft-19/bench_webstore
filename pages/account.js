@@ -4,6 +4,7 @@ import {useEffect, useState, useReducer} from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import Context from "../utils/context"
+import Spinner from "../components/spinner"
 
 const reducer = (state, action) => {
     if(action.type === "input") {
@@ -57,6 +58,10 @@ const  Account = (props) => {
             params: state
         })
     }
+
+    if(!account) {
+        return <Spinner />
+      }
 
     return (
         <div>

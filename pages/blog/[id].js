@@ -3,6 +3,7 @@ import {useRouter} from "next/router"
 import axios from "axios"
 import ReactMarkdown from "react-markdown"
 import styles from "../../styles/blog.module.css"
+import Spinner from "../../components/spinner"
 
 export default  function Blog(props) {
     const [article, setArticle] = useState(null)
@@ -19,7 +20,7 @@ export default  function Blog(props) {
             })
     }, [query])
     if(!article) {
-        return <p>Loading...</p>
+        return <Spinner />      
     }
     return (
         <div className={styles.blogContainer}>

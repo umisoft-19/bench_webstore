@@ -7,6 +7,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const AccountMenu = props => {
     const [show, setShow] = useState(false)
 
+    if(props.mobile)  {
+        return (
+            <Context.Consumer>{context => (
+                <li>
+                <span>Account</span>
+                <ul>
+                    {context.account
+                        ? <>
+                            <li><Link href="/wishlist">Wishlist</Link></li>
+                            <li><Link href="/cart">Cart</Link></li>
+                            <li><Link href="/account">My Account</Link></li>
+                          </>
+                        : null
+                    }
+                    <li>
+                        <label>Currency: </label><br />
+                        <select onClick={e=> e.stopPropagation()}>
+                            <option>USD</option>
+                            <option>ZWL</option>
+                        </select>
+                    </li>
+                </ul>
+            </li>
+            )}</Context.Consumer>
+        )
+    }
+
     return (
         <Context.Consumer>{context => (
             <li 
@@ -28,7 +55,10 @@ const AccountMenu = props => {
                 }
                 <li>
                     <label>Currency: </label>
-                    <select onClick={e=> e.stopPropagation()}>
+                    <select 
+                        onClick={e=> e.stopPropagation()}
+                        className={styles.select}
+                    >
                         <option>USD</option>
                         <option>ZWL</option>
                     </select>
@@ -41,7 +71,11 @@ const AccountMenu = props => {
 
 
 export default function Navbar(props) {
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
+    const [mobile, setMobile] = useState(false)
+    useEffect(() => {
+        setMobile(window.screen.width < 576)
+    }, [])
     // console.log(window)
     return (
         <nav className={styles.nav}>
@@ -55,13 +89,17 @@ export default function Navbar(props) {
                 >
                     <FontAwesomeIcon icon="bars"/>
                 </button>
-                <ul className={styles.navList} style={{display: show ? "flex": "none"}}>
+                <ul 
+                    className={styles.navList} 
+                    style={{display: mobile ? show ? "flex": "none" : "flex"}}
+                    onClick={() => mobile ? setShow(false) : null}
+                >
                     <li><Link href="/">Products</Link></li>
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/login">Login</Link></li>
                     <li><Link href="/sign_up">Sign Up</Link></li>
-                    <AccountMenu />
+                    <AccountMenu mobile={mobile}/>
                 </ul>
             </div>
         </nav>

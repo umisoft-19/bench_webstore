@@ -7,7 +7,7 @@ import styles from "../../styles/department.module.css"
 import Input from "../../components/input"
 import Link from "next/link"
 import Filters from "../../components/filters"
-
+import Spinner from "../../components/spinner"
 
 
 export default  function Department(props) {
@@ -35,7 +35,9 @@ export default  function Department(props) {
             })
     }, [query]);
     
-    
+    if(products.length == 0) {
+        return <Spinner />
+      }
 
     return (
         <div>
