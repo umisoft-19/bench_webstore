@@ -23,7 +23,6 @@ export default  function Category(props) {
         }
         axios.get("/api/category/?id=" + query.id)
             .then(res => {
-                console.log(res)
                 setProducts(res.data.products || [])
                 setName(res.data.name)
                 setDescription(res.data.description)

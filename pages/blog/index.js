@@ -14,7 +14,6 @@ export default  function Blog(props) {
     useEffect(() => {
         axios.get("/api/blog/")
             .then(res => {
-                console.log(res.data)
                 setArticles(res.data)
                 if(res.data.length > 0) {
                     setTags(res.data[0].all_tags)

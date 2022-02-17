@@ -26,7 +26,6 @@ export default  function Department(props) {
         }
         axios.get("/api/department/?id=" + query.id)
             .then(res => {
-                console.log(res)
                 setProducts(res.data.products || [])
                 setName(res.data.name)
                 setCategories(res.data.categories || [])

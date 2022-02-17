@@ -2,7 +2,6 @@ import styles from "../styles/components.module.css"
 import Link from "next/link"
 
 export default function Card(props)  {
-    console.log(props)
     return (
         <div className={styles.card} style={{height: "fit-content"}}>
             {props.image 

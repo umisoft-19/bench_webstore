@@ -32,7 +32,6 @@ export default function Home() {
       url: "/api/search", 
       params: {name__icontains: val}
     }).then(res => {
-        console.log(res)
         setResults(res.data)    
     })
   }

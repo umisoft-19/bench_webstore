@@ -5,6 +5,8 @@ import axios from "axios"
 import { useRouter } from "next/router"
 import Context from "../utils/context"
 import Spinner from "../components/spinner"
+import Modal from "../components/modal"
+
 
 const reducer = (state, action) => {
     if(action.type === "input") {
@@ -23,6 +25,8 @@ const reducer = (state, action) => {
 const  Account = (props) => {
     const [account, setAccount] = useState(null)
     const [state, dispatch ] = useReducer(reducer, {})
+    const [error, setError] = useState("")
+    const [showModal, setShowModal] = useState(false)
     const router = useRouter()
 
     useEffect(()=> {
@@ -33,7 +37,6 @@ const  Account = (props) => {
                 } else {
                     if(res.data.length > 0) {
                         const data = res.data[0]
-                        console.log(data)
                         const [first_name, last_name] = data.customer_name.split(" ")
                         dispatch({type: "initial", value: {
                             address: data.billing_address,
@@ -56,6 +59,16 @@ const  Account = (props) => {
             url: "/api/update_account",
             method: "GET",
             params: state
+        }).then(res => {
+            if(res.data.error) {
+                setError(res.data.error)
+            } else {
+                setError("Updated Account Successfully.")
+            }   
+            setShowModal(true)
+        }).catch(err => {
+            setError("Failed to update Account")
+            setShowModal(true)
         })
     }
 
@@ -65,6 +78,12 @@ const  Account = (props) => {
 
     return (
         <div>
+            <Modal 
+                title="Account Update"
+                content={error}
+                show={showModal}
+                dismiss={() => {setError(""); setShowModal(false)}}
+            />
             <h1>My Account</h1>
             <div className={styles.container}>
                 <div className={styles.right}>

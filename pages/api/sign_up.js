@@ -1,15 +1,11 @@
-import axios from "../../utils/auth"
+import axios from "axios"
 
-export default async function departments(req, res) {
+export default async function sign_up(req, res) {
     
     const data = await axios({
         method: "GET",
         url: `${process.env.HOST}sign-up/`,
         params: req.query,
-        // headers: {
-        //     "X-CSRFTOKEN": resp.data.csrf
-        // }
     })
-     
     return res.status(200).json( data.data)
 }

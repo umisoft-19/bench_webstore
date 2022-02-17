@@ -1,8 +1,7 @@
 import axios from "axios";
 
 
-const addToCart = (item, account, qty) => {
-    console.log(account)
+const addToCart = (item, account, qty, modalController) => {
     axios({
         url: "/api/add_to_cart/",
         method: "GET",
@@ -12,12 +11,13 @@ const addToCart = (item, account, qty) => {
             qty: qty
         }
     }).then(res => {
-        // alert("Added to cart!")
-        console.log("added")
+        modalController(`Added ${qty} of item #${item} to your cart.`)
+    }).catch(err => {
+        modalController("Failed to add item to your cart.")
     })
 }
 
-const addToWishList = (item, account) => {
+const addToWishList = (item, account, modalController) => {
     axios({
         url:"/api/add_to_wishlist/", 
         method: "GET",
@@ -26,7 +26,9 @@ const addToWishList = (item, account) => {
             account: account
         }
     }).then(res => {
-        alert("Added to wishlist!")
+        modalController(`Added  item #${item} to your wish list.`)
+    }).catch(err => {
+        modalController("Failed to add item to your wish list.")
     })
 }
 

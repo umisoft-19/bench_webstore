@@ -35,10 +35,6 @@ export default function Carousel(props) {
     }, [props.img_list])
 
     useEffect(()=> {
-        console.log("navigating image")
-        console.log(state.currentImgIndex)
-        console.log(props.container.current.offsetWidth)
-        console.log(TrainRef.current)
         TrainRef.current.scroll({
             top: 0, 
             left: state.currentImgIndex * props.container.current.offsetWidth,
@@ -47,7 +43,6 @@ export default function Carousel(props) {
 
     }, [state.currentImgIndex])
 
-    console.log(state)
 
     return (
         <div className={styles.carouselRoot}>

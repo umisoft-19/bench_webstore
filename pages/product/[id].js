@@ -44,7 +44,6 @@ export default  function Product(props) {
         axios.get("/api/product/?id=" + query.id)
             .then(res => {
                 const img_list = [res.data.img]
-                console.log(res.data)
                 setObj(res.data)
                 setName(res.data.name)
                 setDescription(res.data.description)
@@ -87,12 +86,12 @@ export default  function Product(props) {
                                     </div>
                                     <div className={styles.actions}>
                                         <button 
-                                          onClick={() => addToCart(obj.id, context.account.id, state.count)}
+                                          onClick={() => addToCart(obj.id, context.account.id, state.count, context.renderMessage)}
                                         >
                                             ADD TO CART
                                         </button>
                                         <button 
-                                            onClick={() => addToWishList(obj.id, context.account.id)}
+                                            onClick={() => addToWishList(obj.id, context.account.id, context.renderMessage)}
                                         > 
                                             WISH LIST ITEM 
                                         </button>

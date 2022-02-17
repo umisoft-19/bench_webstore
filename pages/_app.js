@@ -10,6 +10,8 @@ import { useState, useEffect } from "react"
 import Context from "../utils/context"
 import  { getCookie } from "cookies-next"
 import axios from "axios"
+import Modal from '../components/modal'
+
 
 
 library.add(faHome, faSearch, faFilter, faBars, faEllipsisV, 
@@ -18,6 +20,9 @@ library.add(faHome, faSearch, faFilter, faBars, faEllipsisV,
 
 function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
+  const [message, setMessage] = useState("")
+  const [show, setShow] = useState("")
+
   useEffect(() => {
     const token = getCookie("token")
     if(!account) {
@@ -30,14 +35,32 @@ function MyApp({ Component, pageProps }) {
 
   }, [])
 
+
+  const toggle = () => {
+    setShow(!show)
+  }
+
+  const renderMsg = (msg) => {
+    setMessage(msg)
+    setShow(true)
+  } 
+
   return (
     <Context.Provider value={{
         account:account,
-        setAccountDetails:setAccount
+        setAccountDetails:setAccount,
+        toggle: toggle,
+        renderMessage: renderMsg
       }}>
       <Layout  >
         <Component 
           {...pageProps}
+        />
+        <Modal 
+          title="Message"
+          content={message}
+          show={show}
+          dismiss={() => setShow(false)}
         />
       </Layout>
     </Context.Provider>

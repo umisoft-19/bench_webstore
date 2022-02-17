@@ -4,6 +4,8 @@ import Input from "./input"
 import {useState} from "react"
 import axios from "axios"
 import Context from "../utils/context"
+import Modal from "./modal"
+
 const Bar = (props) => {
     return (
         <div className={styles.bar}>
@@ -16,6 +18,8 @@ const Bar = (props) => {
 export default function Reviews(props) {
     const [score, setScore] = useState(5)
     const [review, setReview] = useState("")
+    const [message, setMessage] = useState("")
+    const [showModal, setShowModal] = useState(false)
 
     const submit = (account) => {
         axios({
@@ -27,6 +31,12 @@ export default function Reviews(props) {
                 review:review,
                 item: props.product_id
             }
+        }).then(res => {
+            setMessage("Thank you for your review, it was submitted successfully.")
+            setShowModal(true)
+        }).catch(err => {
+            setMessage("An error occured, your review was not submitted.")
+            setShowModal(true)
         })
     }
     
@@ -87,6 +97,12 @@ export default function Reviews(props) {
                 ))}
 
             </div>
+            <Modal 
+                title="Review"
+                content={message}
+                show={showModal}
+                dismiss={() => {setShowModal(false); setMessage("")}}
+            />
         </div>
         )}</Context.Consumer>       
     )

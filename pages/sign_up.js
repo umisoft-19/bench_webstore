@@ -3,10 +3,19 @@ import formStyles from "../styles/forms.module.css"
 import Link from "next/link"
 import {useReducer, useEffect} from "react"
 import axios from "axios"
+import Modal from "../components/modal"
+import {useRouter} from "next/router"
+
 
 const reducer = (state, action) => {
     const newState = {...state}
-    newState[action.field] = action.value
+    if(action.type == "toggle") {
+        newState.showModal = !state.showModal
+        newState.error_msg = action.value
+        newState.error_title = action.title ? action.title : "Error"
+    } else {
+        newState[action.field] = action.value
+    }
     return newState
 }
 
@@ -16,14 +25,38 @@ export default  function SignUp(props) {
         last_name: "",
         email: "",
         password: "",
-        repeat_password: ""
+        repeat_password: "",
+        error_msg: "",
+        error_title: "Error",
+        showModal: false
     })
 
+    const router = useRouter()
+
     const submit = () => {
+        const params = {...state}
+        delete params.error_msg
+        delete params.error_title
+        delete params.showModal
         axios({
             url: "/api/sign_up",
             method: "GET",
             params: state
+        }).then(res => {
+            console.log(res)
+            if(res.data.error) {
+                const errors = res.data.message 
+                    ? Object.values(res.data.message)
+                        .map(err => `- ${err}`).join("\n")
+                    : "An error occured"
+                dispatch({type: "toggle", value: errors})
+            } else {
+                dispatch({type: "toggle", value: "Account created successfully.", title: "Success!"})
+                setTimeout(() => router.push("/login/"), 1000)
+            }
+            
+        }).catch(err => {
+            dispatch({type: "toggle", value: "Failed to sign up for an account because of an error."})
         })
     }
     return (
@@ -79,6 +112,12 @@ export default  function SignUp(props) {
                 >
                     Sign Up
                 </button>
+                <Modal 
+                    title={state.error_title}
+                    content={state.error_msg}
+                    show={state.showModal}
+                    dismiss={() => dispatch({type: "toggle", value:""})}
+                />
             </div>
         </div>
     )

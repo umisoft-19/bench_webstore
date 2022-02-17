@@ -6,7 +6,7 @@ import Context  from "../utils/context"
 import Price from "./price"
 
 export default function Card(props)  {
-    
+    console.log(props)
     return (<Context.Consumer>{context =>(
         <div className={styles.card}>
             <div className={styles.cardImg}>
@@ -22,7 +22,7 @@ export default function Card(props)  {
                     ? <div className={styles.btnGroup}>
                             <button
                               className={styles.addToCart}
-                              onClick={() => addToCart(props.id, context.account.id, 1)}
+                              onClick={() => addToCart(props.id, context.account.id, 1, context.renderMessage)}
                             > 
                                 <FontAwesomeIcon icon="shopping-cart"/> Add to Cart
                             </button>
@@ -30,7 +30,7 @@ export default function Card(props)  {
                                 ? null
                                 : <button 
                                     className={styles.addToWishList}
-                                    onClick={() => addToWishList(props.id, context.account.id)}
+                                    onClick={() => addToWishList(props.id, context.account.id, context.renderMessage)}
                                   >
                                     <FontAwesomeIcon icon="heart"/> 
                                   </button>}

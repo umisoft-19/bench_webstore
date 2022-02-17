@@ -4,30 +4,39 @@ import Link from "next/link"
 import {useReducer, useEffect} from "react"
 import {useRouter} from "next/router"
 import axios from "axios"
+import Modal from "../components/modal"
 
 const reducer = (state, action) => {
     const newState = {...state}
-    newState[action.field] = action.value
+    if(action.type == "toggle") {
+        newState.showModal = !state.showModal
+    } else {
+        newState[action.field] = action.value
+    }
     return newState
 }
 
 export default  function Login(props) {
     const [state, dispatch] = useReducer(reducer, {
         username: "",
-        password: ""
+        password: "",
+        showModal: false
     })
     const router = useRouter()
 
     const submit = () => {
-        console.log("submit")
         axios({
             url: "/api/login",
             method: "GET",
             params: state
         }).then(res => {
-            router.push("/account/")
+            if(res.data.token) {
+                router.push("/account/")
+            } else {
+                dispatch({type: "toggle"})
+            }
         }).catch(err => {
-            alert("Failed to authenticate user.")
+            dispatch({type: "toggle"})
         })
     }
 
@@ -45,7 +54,7 @@ export default  function Login(props) {
                 <Input 
                     label="Password"
                     name="password"
-                    type="text"
+                    type="password"
                     value={state.password}
                     handler={(val) => dispatch({field: "password", value: val})}
                 />
@@ -57,6 +66,12 @@ export default  function Login(props) {
                     Login
                 </button>
             </div>
+            <Modal 
+                title="Error"
+                content="Failed to authenticate user."
+                show={state.showModal}
+                dismiss={() => dispatch({type: "toggle"})}
+                />
         </div>
     )
 }

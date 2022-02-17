@@ -27,7 +27,6 @@ export default  function FAQ(props) {
     useEffect(() => {
         axios.get("/api/faq/")
             .then(res => {
-                console.log(res)
                 setFaqs(res.data)
             })
     }, [])

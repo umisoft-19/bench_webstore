@@ -18,7 +18,6 @@ export default  function About(props) {
     useEffect(() => {
         axios.get("/api/about/")
             .then(res => {
-                console.log(data)
                 setData(res.data)
                 if(res.data.business_gps) {
                     const split = res.data.business_gps.split(",")

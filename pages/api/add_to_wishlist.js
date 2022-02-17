@@ -15,7 +15,6 @@ export default async function add_to_wishlist(req, res) {
             params: req.query
         })
     } catch(err) {
-        console.log(err)
         return res.status(200).json({"error": "Could not authenticate"})
     }
     return res.status(200).json(data.data)

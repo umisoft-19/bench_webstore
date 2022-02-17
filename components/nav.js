@@ -76,7 +76,6 @@ export default function Navbar(props) {
     useEffect(() => {
         setMobile(window.screen.width < 576)
     }, [])
-    // console.log(window)
     return (
         <nav className={styles.nav}>
             <div>
