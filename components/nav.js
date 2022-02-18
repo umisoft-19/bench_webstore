@@ -47,9 +47,9 @@ const AccountMenu = props => {
             >
                 {context.account
                     ? <>
-                        <li><Link href="/wishlist">Wishlist</Link></li>
-                        <li><Link href="/cart">Cart</Link></li>
-                        <li><Link href="/account">My Account</Link></li>
+                        <li><Link href="/wishlist"><><FontAwesomeIcon icon="heart"/> Wish List</></Link></li>
+                        <li><Link href="/cart"><><FontAwesomeIcon icon="shopping-cart"/> Cart</></Link></li>
+                        <li><Link href="/account"><><FontAwesomeIcon icon="user"/> My Account</></Link></li>
                       </>
                     : null
                 }

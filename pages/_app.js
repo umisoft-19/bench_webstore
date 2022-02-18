@@ -4,7 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import { faHome, faSearch, faFilter, faEllipsisV, faBars,
    faAngleLeft, faAngleRight, faShoppingCart, faHeart,
-   faAt, faPhone, faQuestion, faList, faFile, faStar } from "@fortawesome/free-solid-svg-icons"
+   faAt, faPhone, faQuestion, faList, faFile, faStar, faUser } from "@fortawesome/free-solid-svg-icons"
 import Layout from "../components/layout"
 import { useState, useEffect } from "react"
 import Context from "../utils/context"
@@ -16,7 +16,7 @@ import Modal from '../components/modal'
 
 library.add(faHome, faSearch, faFilter, faBars, faEllipsisV, 
   fab, faAngleLeft, faAngleRight, faHeart, faShoppingCart,
-  faAt, faPhone, faQuestion, faList, faFile, faStar)
+  faAt, faPhone, faQuestion, faList, faFile, faStar, faUser)
 
 function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
         account:account,
         setAccountDetails:setAccount,
         toggle: toggle,
-        renderMessage: renderMsg
+        renderMessage: renderMsg,
       }}>
       <Layout  >
         <Component 

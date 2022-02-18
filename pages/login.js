@@ -1,10 +1,11 @@
 import Input from "../components/input"
 import formStyles from "../styles/forms.module.css"
 import Link from "next/link"
-import {useReducer, useEffect} from "react"
+import {useReducer, useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import axios from "axios"
 import Modal from "../components/modal"
+import Captcha from "../components/captcha"
 
 const reducer = (state, action) => {
     const newState = {...state}
@@ -17,6 +18,7 @@ const reducer = (state, action) => {
 }
 
 export default  function Login(props) {
+    const [captchaValid, setCaptchaValid] = useState(false)
     const [state, dispatch] = useReducer(reducer, {
         username: "",
         password: "",
@@ -25,6 +27,10 @@ export default  function Login(props) {
     const router = useRouter()
 
     const submit = () => {
+        if(!captchaValid) {
+            alert("Invalid Captcha!")
+            return
+        }
         axios({
             url: "/api/login",
             method: "GET",
@@ -58,6 +64,7 @@ export default  function Login(props) {
                     value={state.password}
                     handler={(val) => dispatch({field: "password", value: val})}
                 />
+                <Captcha validate={setCaptchaValid} />
                 <p>Don"t have an account? <Link href="/sign_up"><b>Sign Up</b></Link></p>
                 <button
                     className={formStyles.button}

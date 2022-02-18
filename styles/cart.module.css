@@ -18,9 +18,9 @@
 }
 
 .cartItem > div:first-child,
-.cartItem > div:last-child 
+.cartItem > div:last-child,
+.figures
 {
-    width: 80px !important;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -42,5 +42,42 @@
 
 .cartTotals > div {
     margin-bottom: 1rem;
+}
 
+.cartTotals tr td:first-child {
+    padding-right: 2rem;
+}
+
+.cartTotals tr td:last-child {
+    text-align: right;
+}
+
+.headings {
+    display: flex;
+    width: 80%;
+    margin: 1rem auto;
+    background-color: #eee;
+}
+
+.cartItem .mobile_label {
+    display: none;
+}
+
+.figures {
+    min-width: 80px;
+}
+
+
+@media (max-width: 575px) {
+    .headings {
+        display: none;
+    }
+
+    .cartItem {
+        flex-direction: column;
+    }
+
+    .cartItem .mobile_label {
+        display: block;
+    }
 }
