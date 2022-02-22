@@ -6,7 +6,6 @@ import Context  from "../utils/context"
 import Price from "./price"
 
 export default function Card(props)  {
-    console.log(props)
     return (<Context.Consumer>{context =>(
         <div className={styles.card}>
             <div className={styles.cardImg}>

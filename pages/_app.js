@@ -13,13 +13,14 @@ import axios from "axios"
 import Modal from '../components/modal'
 
 
-
 library.add(faHome, faSearch, faFilter, faBars, faEllipsisV, 
   fab, faAngleLeft, faAngleRight, faHeart, faShoppingCart,
   faAt, faPhone, faQuestion, faList, faFile, faStar, faUser)
 
 function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
+  const [currency, setCurrency] = useState("USD")
+  const [exchangeRate, setExchangeRate] = useState(1)
   const [message, setMessage] = useState("")
   const [show, setShow] = useState("")
 
@@ -32,9 +33,7 @@ function MyApp({ Component, pageProps }) {
           setAccount(data)
         })
     }
-
   }, [])
-
 
   const toggle = () => {
     setShow(!show)
@@ -51,6 +50,10 @@ function MyApp({ Component, pageProps }) {
         setAccountDetails:setAccount,
         toggle: toggle,
         renderMessage: renderMsg,
+        currency: currency,
+        exchangeRate: exchangeRate,
+        updateCurrency: setCurrency,
+        updateExchangeRate: setExchangeRate,
       }}>
       <Layout  >
         <Component 
@@ -64,7 +67,6 @@ function MyApp({ Component, pageProps }) {
         />
       </Layout>
     </Context.Provider>
-    
   )
 }
 

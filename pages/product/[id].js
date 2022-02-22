@@ -101,8 +101,9 @@ export default  function Product(props) {
                         </div>
                     </div>
                     <div className={styles.share}>
-                        <h5>Share</h5>
-                        <hr />
+                        {/* <h5>Share</h5> */}
+                        <br />
+                        <hr /> 
                         <div className={styles.shareBox}>
                             <div><FontAwesomeIcon icon={["fab", "facebook"]} size="2x"/> <span className={styles.socialText}>Facebook</span></div>
                             <div><FontAwesomeIcon icon={["fab", "instagram"]} size="2x"/> <span className={styles.socialText}>Instagram</span></div>

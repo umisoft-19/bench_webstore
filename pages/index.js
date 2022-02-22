@@ -14,12 +14,15 @@ export default function Home() {
   const [departments, setDepartments] = useState([])
   const [featured, setFeatured] = useState([])
   const [results, setResults] = useState([])
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     axios.get("/api/")
             .then(res => {
+              console.log(res.data)
                 setDepartments(res.data.departments)
                 setFeatured(res.data.featured_items)
+                setData(res.data.settings)
             })
   }, [])
 
@@ -48,10 +51,14 @@ export default function Home() {
         <meta name="description" content="This is your webstore" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className={styles.section}>
-        <div className={styles.hero}>
-          <h1>Welcome To <br /> Your store</h1>
-          <p>Here"s a slogan</p>
+      <section className={styles.section} >
+        <div 
+          style={{backgroundImage: `url(${data ? data.home_page_background_image : ""})`}}
+          className={styles.heroContainer}
+        >
+        <div className={styles.hero} >
+          <h1>{data ? data.home_page_title : ""}</h1>
+          <p>{data ? data.home_page_slogan : ""}</p>
           <div className={styles.search}>
             <input 
               type="text"
@@ -79,6 +86,7 @@ export default function Home() {
             }
             
           </div>
+        </div>
         </div>
         <h2>Departments</h2>
         <div className={styles.departmentCards}>

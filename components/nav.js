@@ -1,15 +1,31 @@
 import styles from "../styles/layout.module.css"
 import Link from "next/link"
-import {useEffect, useState} from "react"
+import {useEffect, useState, useContext} from "react"
 import Context from "../utils/context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import axios from 'axios'
 
 const AccountMenu = props => {
     const [show, setShow] = useState(false)
+    const context = useContext(Context)
+
+    const toggleCurrency = (e) => {
+        e.stopPropagation()
+        console.log(e.target.value)
+        
+        axios({
+            method: "GET",
+            url: "/api/get_exchange_rate/",
+            params: {currency: e.target.value}
+        }).then(res => {
+            console.log(res)
+            context.updateCurrency(e.target.value)
+            context.updateExchangeRate(res.data.rate)
+        })
+    }
 
     if(props.mobile)  {
         return (
-            <Context.Consumer>{context => (
                 <li>
                 <span>Account</span>
                 <ul>
@@ -23,14 +39,16 @@ const AccountMenu = props => {
                     }
                     <li>
                         <label>Currency: </label><br />
-                        <select onClick={e=> e.stopPropagation()}>
-                            <option>USD</option>
-                            <option>ZWL</option>
+                        <select 
+                            onClick={toggleCurrency}
+                            className={styles.select}
+                        >
+                            <option value="$">USD</option>
+                            <option value="ZWD">ZWD</option>
                         </select>
                     </li>
                 </ul>
             </li>
-            )}</Context.Consumer>
         )
     }
 
@@ -47,20 +65,20 @@ const AccountMenu = props => {
             >
                 {context.account
                     ? <>
-                        <li><Link href="/wishlist"><><FontAwesomeIcon icon="heart"/> Wish List</></Link></li>
-                        <li><Link href="/cart"><><FontAwesomeIcon icon="shopping-cart"/> Cart</></Link></li>
-                        <li><Link href="/account"><><FontAwesomeIcon icon="user"/> My Account</></Link></li>
+                        <li><FontAwesomeIcon icon="heart"/>  <Link href="/wishlist">Wish List</Link></li>
+                        <li><FontAwesomeIcon icon="shopping-cart"/> <Link href="/cart">Cart</Link></li>
+                        <li><FontAwesomeIcon icon="user"/> <Link href="/account">My Account</Link></li>
                       </>
                     : null
                 }
                 <li>
                     <label>Currency: </label>
                     <select 
-                        onClick={e=> e.stopPropagation()}
+                        onClick={toggleCurrency}
                         className={styles.select}
                     >
-                        <option>USD</option>
-                        <option>ZWL</option>
+                        <option value="$">USD</option>
+                        <option value="ZWD">ZWL</option>
                     </select>
                 </li>
             </ul>
@@ -93,9 +111,10 @@ export default function Navbar(props) {
                     style={{display: mobile ? show ? "flex": "none" : "flex"}}
                     onClick={() => mobile ? setShow(false) : null}
                 >
-                    <li><Link href="/">Products</Link></li>
+                    
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/about">About</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
                     <li><Link href="/login">Login</Link></li>
                     <li><Link href="/sign_up">Sign Up</Link></li>
                     <AccountMenu mobile={mobile}/>

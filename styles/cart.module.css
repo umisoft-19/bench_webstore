@@ -54,7 +54,7 @@
 
 .headings {
     display: flex;
-    width: 80%;
+    width: 82%;
     margin: 1rem auto;
     background-color: #eee;
 }
@@ -64,7 +64,7 @@
 }
 
 .figures {
-    min-width: 80px;
+    min-width: 125px;
 }
 
 

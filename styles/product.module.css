@@ -34,7 +34,7 @@
 }
 
 .shareBox {
-    display: flex;
+    display: none;
     width: 100%;
     flex-wrap: wrap;
 }
