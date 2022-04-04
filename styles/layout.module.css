@@ -18,8 +18,14 @@
 }
 
 .nav > div > img {
-    width: 70px;
+    width: 90px;
     height: auto;
+}
+
+.nav > div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navList {
@@ -87,6 +93,11 @@
 }
 
 @media (max-width: 575px) {
+    .nav > div > img {
+        width: 70px;
+        height: auto;
+    }
+
     .mobileButton {
         display: block;
     }
