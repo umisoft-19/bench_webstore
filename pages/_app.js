@@ -19,20 +19,31 @@ library.add(faHome, faSearch, faFilter, faBars, faEllipsisV,
 
 function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
-  const [currency, setCurrency] = useState("USD")
+  const [currency, setCurrency] = useState(null)
+  const [currencies, setCurrencies] = useState([])
+  const [hidePrices, setHidePrices] = useState(false)
   const [exchangeRate, setExchangeRate] = useState(1)
   const [message, setMessage] = useState("")
   const [show, setShow] = useState("")
 
   useEffect(() => {
-    const token = getCookie("token")
-    if(!account) {
-      axios.get("/api/account")
-        .then(res => {
-          const data = res.data[0]
-          setAccount(data)
-        })
-    }
+    axios.get("/api/")
+      .then(r => {
+        console.log(r)
+        console.log(r.data.settings.available_currencies)
+        setHidePrices(r.data.settings.hide_prices)
+        setCurrency(r.data.settings.default_currency)
+        setCurrencies(r.data.settings.available_currencies)
+
+        if(!account) {
+            axios.get("/api/account")
+              .then(res => {
+                const data = res.data[0]
+                setAccount(data)
+              })
+          }      
+      })
+    
   }, [])
 
   const toggle = () => {
@@ -51,9 +62,11 @@ function MyApp({ Component, pageProps }) {
         toggle: toggle,
         renderMessage: renderMsg,
         currency: currency,
+        currencies: currencies,
+        hidePrices: hidePrices,
         exchangeRate: exchangeRate,
         updateCurrency: setCurrency,
-        updateExchangeRate: setExchangeRate,
+        updateExchangeRate: val => setExchangeRate(val),
       }}>
       <Layout  >
         <Component 

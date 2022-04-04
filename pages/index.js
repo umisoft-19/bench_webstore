@@ -19,7 +19,6 @@ export default function Home() {
   useEffect(() => {
     axios.get("/api/")
             .then(res => {
-              console.log(res.data)
                 setDepartments(res.data.departments)
                 setFeatured(res.data.featured_items)
                 setData(res.data.settings)

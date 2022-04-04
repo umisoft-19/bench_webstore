@@ -5,24 +5,43 @@ import Context from "../utils/context"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from 'axios'
 
-const AccountMenu = props => {
-    const [show, setShow] = useState(false)
+const CurrencyWidget = (props) => {
     const context = useContext(Context)
 
     const toggleCurrency = (e) => {
         e.stopPropagation()
-        console.log(e.target.value)
         
         axios({
             method: "GET",
             url: "/api/get_exchange_rate/",
             params: {currency: e.target.value}
         }).then(res => {
-            console.log(res)
-            context.updateCurrency(e.target.value)
+            console.log(context.currencies)
+            const currency_obj = context.currencies.filter(c => c.id == e.target.value)[0]
+            context.updateCurrency(currency_obj)
             context.updateExchangeRate(res.data.rate)
         })
     }
+
+    return (
+    <li>
+        <label>Currency: </label><br />
+        <select 
+            onClick={toggleCurrency}
+            className={styles.select}
+        >
+            {context.currencies.map(c => (
+                <option key={c.id} value={c.id}>{c.symbol}</option>
+            ))}
+        </select>
+    </li>
+)}
+
+const AccountMenu = props => {
+    const [show, setShow] = useState(false)
+    const context = useContext(Context)
+
+    
 
     if(props.mobile)  {
         return (
@@ -37,16 +56,7 @@ const AccountMenu = props => {
                           </>
                         : null
                     }
-                    <li>
-                        <label>Currency: </label><br />
-                        <select 
-                            onClick={toggleCurrency}
-                            className={styles.select}
-                        >
-                            <option value="$">USD</option>
-                            <option value="ZWD">ZWD</option>
-                        </select>
-                    </li>
+                    <CurrencyWidget />
                 </ul>
             </li>
         )
@@ -71,16 +81,7 @@ const AccountMenu = props => {
                       </>
                     : null
                 }
-                <li>
-                    <label>Currency: </label>
-                    <select 
-                        onClick={toggleCurrency}
-                        className={styles.select}
-                    >
-                        <option value="$">USD</option>
-                        <option value="ZWD">ZWL</option>
-                    </select>
-                </li>
+                <CurrencyWidget  />
             </ul>
         </li>
         )}</Context.Consumer>
