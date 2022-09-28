@@ -7,6 +7,7 @@ import styles from "../../styles/department.module.css"
 import Input from "../../components/input"
 import Filters from "../../components/filters"
 import Spinner from "../../components/spinner"
+import EmptyList from "../../components/empty_list"
 
 
 
@@ -30,9 +31,6 @@ export default  function Category(props) {
             })
     }, [query]);
 
-    if(products.length == 0) {
-        return <Spinner />
-      }
     
 
     return (
@@ -47,6 +45,7 @@ export default  function Category(props) {
                     <Filters setProducts={setProducts}/>
                 </div>
                 <div className={styles.products}>
+                    {products.length == 0 && <EmptyList message="This category has no items!" />}
                     
                     <div className={styles.productList}>
                         {products.map(p => <Card key={p.name} {...p}/>)}

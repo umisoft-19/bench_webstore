@@ -8,20 +8,24 @@ import axios from "axios"
 import Card from "../components/product"
 import Link from "next/link"
 import Spinner from "../components/spinner"
+import { ArticleCard } from "../components/blog"
 
 
 export default function Home() {
   const [departments, setDepartments] = useState([])
   const [featured, setFeatured] = useState([])
   const [results, setResults] = useState([])
+  const [articles, setArticles] = useState([])
   const [data, setData] = useState(null)
 
   useEffect(() => {
     axios.get("/api/")
             .then(res => {
+              console.log(res.data.articles)
                 setDepartments(res.data.departments)
                 setFeatured(res.data.featured_items)
                 setData(res.data.settings)
+                setArticles(res.data.articles)
             })
   }, [])
 
@@ -38,10 +42,6 @@ export default function Home() {
     })
   }
 
-
-  if(departments.length == 0) {
-    return <Spinner />
-  }
 
   return (
     <div >
@@ -87,21 +87,25 @@ export default function Home() {
           </div>
         </div>
         </div>
-        <h2>Departments</h2>
+      </section>
+      {departments.length > 0 && <section className={styles.section}>
+        <h2>Explore</h2>
         <div className={styles.departmentCards}>
           {departments.map(dept => <DepartmentCard key={dept.id} {...dept} />)}
         </div>
-      </section>
-      <section className={styles.section}>
-        <h2>Featured Items</h2>
+      </section>}
+      {featured.length > 0 && <section className={styles.section}>
+        <h2>Featured</h2>
         <div className={styles.productList}>
           {featured.map(p => <Card key={p.name} {...p}/>)}
         </div>
-      </section>
-      
-      
-
-      
+      </section>}
+      {articles.length > 0 && <section className={styles.section}>
+        <h2>Latest Posts</h2>
+        <div className={styles.productList}>
+          {articles.map(p => <ArticleCard key={p.id} id={p.id} title={p.title} image={p.title_photo}/>)}
+        </div>
+      </section>}      
     </div>
   )
 }

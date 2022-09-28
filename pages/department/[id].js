@@ -8,6 +8,8 @@ import Input from "../../components/input"
 import Link from "next/link"
 import Filters from "../../components/filters"
 import Spinner from "../../components/spinner"
+import EmptyList from "../../components/empty_list"
+
 
 
 export default  function Department(props) {
@@ -34,10 +36,6 @@ export default  function Department(props) {
             })
     }, [query]);
     
-    if(products.length == 0) {
-        return <Spinner />
-      }
-
     return (
         <div>
             <h1>{name}</h1>
@@ -56,7 +54,7 @@ export default  function Department(props) {
                     
                 </div>
                 <div className={styles.products}>
-                    
+                {products.length == 0 && <EmptyList message="This department has no items!" />}
                     <div className={styles.productList}>
                         {products.map(p => <Card key={p.name} {...p}/>)}
                     </div>

@@ -157,3 +157,20 @@
     justify-content: flex-end;
     margin-top: 1rem;
 }
+
+.emptyList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #bbb;
+    min-height: 50vh;
+}
+
+.emptyList svg {
+    margin: 0px auto
+}
+
+.emptyList h3 {
+    font-size: 2rem;
+}

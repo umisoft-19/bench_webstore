@@ -16,7 +16,6 @@ const CurrencyWidget = (props) => {
             url: "/api/get_exchange_rate/",
             params: {currency: e.target.value}
         }).then(res => {
-            console.log(context.currencies)
             const currency_obj = context.currencies.filter(c => c.id == e.target.value)[0]
             context.updateCurrency(currency_obj)
             context.updateExchangeRate(res.data.rate)
@@ -92,6 +91,8 @@ const AccountMenu = props => {
 export default function Navbar(props) {
     const [show, setShow] = useState(false)
     const [mobile, setMobile] = useState(false)
+    const context = useContext(Context)
+
     useEffect(() => {
         setMobile(window.screen.width < 576)
     }, [])
@@ -113,6 +114,7 @@ export default function Navbar(props) {
                     onClick={() => mobile ? setShow(false) : null}
                 >
                     
+                    {context.departments.map(d => <li><Link href={`/department/${d.id}`}>{d.name}</Link></li>)}
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/contact">Contact</Link></li>

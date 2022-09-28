@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState(null)
   const [currency, setCurrency] = useState(null)
   const [currencies, setCurrencies] = useState([])
+  const [departments, setDepartments] = useState([])
   const [hidePrices, setHidePrices] = useState(false)
   const [exchangeRate, setExchangeRate] = useState(1)
   const [message, setMessage] = useState("")
@@ -29,11 +30,10 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     axios.get("/api/")
       .then(r => {
-        console.log(r)
-        console.log(r.data.settings.available_currencies)
         setHidePrices(r.data.settings.hide_prices)
         setCurrency(r.data.settings.default_currency)
         setCurrencies(r.data.settings.available_currencies)
+        setDepartments(r.data.settings.departments)
 
         if(!account) {
             axios.get("/api/account")
@@ -65,6 +65,7 @@ function MyApp({ Component, pageProps }) {
         currencies: currencies,
         hidePrices: hidePrices,
         exchangeRate: exchangeRate,
+        departments: departments,
         updateCurrency: setCurrency,
         updateExchangeRate: val => setExchangeRate(val),
       }}>
