@@ -114,7 +114,7 @@ export default function Navbar(props) {
                     onClick={() => mobile ? setShow(false) : null}
                 >
                     
-                    {context.departments.map(d => <li><Link href={`/department/${d.id}`}>{d.name}</Link></li>)}
+                    {context.departments.map(d => <li key={d.id}><Link href={`/department/${d.id}`}>{d.name}</Link></li>)}
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
