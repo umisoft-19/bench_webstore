@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.nav > div > img {
+.nav > div > img, .nav img {
     width: 90px;
     height: auto;
 }
@@ -31,6 +31,7 @@
 .navList {
     margin: 0;
     display: flex;
+    transition: all 0.3s ease;
 }
 
 .navList li {
@@ -90,6 +91,8 @@
     background-color: transparent;
     padding: 1rem;
     font-size: 1.5rem;
+    z-index: 10000;
+
 }
 
 @media (max-width: 575px) {
@@ -107,13 +110,27 @@
     }
     .navList {
         position: absolute;
-        top: 65px;
+        top: 0px;
+        left: 155vw;
+        width: 50vw;
+        height: 105vh;
+        max-height: 105vh;
+        overflow-y: auto;
         flex-direction: column;
         background-color: white;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         z-index: 100000;
         padding: 1rem;
         right: 5px;
+    }
+
+    .navList img {
+        margin: 0px auto
+    }
+
+    .mobileNavDropdownList {
+        margin-left: 0px;
+        padding-inline-start: 0px;
     }
 
     .navList li {
@@ -149,6 +166,16 @@
     .main {
         max-width: 1140px;
     }
+}
+
+.mobileOverlay {
+    position: fixed;
+    z-index: 10000;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 .footer {

@@ -10,7 +10,6 @@ const CurrencyWidget = (props) => {
 
     const toggleCurrency = (e) => {
         e.stopPropagation()
-        
         axios({
             method: "GET",
             url: "/api/get_exchange_rate/",
@@ -39,14 +38,11 @@ const CurrencyWidget = (props) => {
 const AccountMenu = props => {
     const [show, setShow] = useState(false)
     const context = useContext(Context)
-
-    
-
     if(props.mobile)  {
         return (
                 <li>
                 <span>Account</span>
-                <ul>
+                <ul className={styles.mobileNavDropdownList}>
                     {context.account
                         ? <>
                             <li><Link href="/wishlist">Wishlist</Link></li>
@@ -97,11 +93,13 @@ export default function Navbar(props) {
         setMobile(window.screen.width < 576)
     }, [])
     return (
+        <>
         <nav className={styles.nav}>
             <div>
                 <Link href="/"><img src={props.config ? props.config.company.logo : "img"}/></Link>
             </div>
             <div>
+                
                 <button 
                     className={styles.mobileButton}
                     onClick={() => setShow(!show)}
@@ -110,10 +108,14 @@ export default function Navbar(props) {
                 </button>
                 <ul 
                     className={styles.navList} 
-                    style={{display: mobile ? show ? "flex": "none" : "flex"}}
+                    style={{
+                        left: show ? "0px": "-60vw"
+                    }}
                     onClick={() => mobile ? setShow(false) : null}
                 >
-                    
+                    <li style={{
+                        display: show ? "inline-block": "none"
+                    }}><Link href="/"><img src={props.config ? props.config.company.logo : "img"}/></Link></li>
                     {context.departments.map(d => <li key={d.id}><Link href={`/department/${d.id}`}>{d.name}</Link></li>)}
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/about">About</Link></li>
@@ -123,6 +125,8 @@ export default function Navbar(props) {
                     <AccountMenu mobile={mobile}/>
                 </ul>
             </div>
-        </nav>
+        </nav>        
+        <div className={styles.mobileOverlay} style={{display: mobile ? show ? "block": "none" : "none"}}></div>
+        </>
     )
 }

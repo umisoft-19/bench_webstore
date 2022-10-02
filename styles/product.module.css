@@ -115,8 +115,6 @@
     margin-bottom: 1rem;
 }
 
-
-
 @media (max-width: 575px) {
     .sidebar {
         display: none;
@@ -124,5 +122,9 @@
 
     .socialText {
         display: none
+    }
+
+    .container {
+        flex-direction: column;
     }
 }
