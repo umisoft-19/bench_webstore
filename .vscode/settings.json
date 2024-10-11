@@ -1,0 +1,88 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "test",
+            "database": "mysql",
+            "username": "root",
+            "password": "123"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3307,
+            "driver": "MySQL",
+            "name": "Zambia Dev",
+            "database": "abc_zm_dev",
+            "username": "root",
+            "askForPassword": true
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "abc-auctions-zm.cluster-ci4hekrn4v00.af-south-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Zambia Live",
+            "database": "abc_zm_dev",
+            "username": "root",
+            "askForPassword": true
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "abc-auctions.cluster-ci4hekrn4v00.af-south-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Zim Live",
+            "username": "root",
+            "database": "abcauctions",
+            "askForPassword": true
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "demo.polaris.gopri.me",
+            "port": 3306,
+            "driver": "MariaDB",
+            "database": "_69b48ed27084ae38",
+            "username": "tawanda",
+            "name": "Polaris Demo",
+            "askForPassword": true
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "polaris.gopri.me",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Polaris Prod",
+            "database": "_6eefa2af9306a03b",
+            "username": "tawanda",
+            "askForPassword": true
+        }
+    ]
+}
